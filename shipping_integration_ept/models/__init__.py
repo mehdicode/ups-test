@@ -6,4 +6,4 @@ from . import product
 from . import res_config_settings
 from . import res_company
 from . import stock
-
+from . import sale_order_ept

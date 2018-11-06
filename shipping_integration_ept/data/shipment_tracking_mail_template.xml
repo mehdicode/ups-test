@@ -21,7 +21,7 @@
                     &nbsp;<b>Order no. </b>| ${object.origin}<br/><br/>
                     % if object.carrier_id and object.carrier_tracking_ref:
                         <br/>
-                            <a href="${(ctx['tracking_link'])|safe}" style="background-color: #8E0000; padding: 20px; text-decoration: none; color: #fff; border-radius: 5px; font-size: 16px;" class="o_default_snippet_text">TRACK MY ORDER</a>
+                            <a href="${(ctx['tracking_link'])|safe}" target="_blank" style="background-color: #8E0000; padding: 20px; text-decoration: none; color: #fff; border-radius: 5px; font-size: 16px;" class="o_default_snippet_text">TRACK MY ORDER</a>
                         <br/><br/>
                     % endif
                 </p>

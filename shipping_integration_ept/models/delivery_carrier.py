@@ -9,6 +9,9 @@ class DeliveryCarrier(models.Model):
     _inherit = "delivery.carrier"
 
     shipping_instance_id = fields.Many2one('shipping.instance.ept', string="Shipping Instance")
+    add_value_added_service_costs_to_delivery_cost=fields.Boolean(string="Add Value Added Service Costs To Delivery Cost",help="Add Value Added Service Costs To Delivery Cost functionality True Than Add cost in UPS.",default=False)
+    extra_delivery_cost = fields.Float(string="Delivery Cost",help="This value consider when API rate calculate and add rate in order. Add this cost in actual rate.",default=0.0)
+    percentage_of_value_added_cost_to_paid_by_customer=fields.Float("Percentage Of Value Added Cost To Paid By Customer(%)",help="Percentage Of Value Added Cost To Paid By Customer.",default=0)
 
     def _default_uom_in_delive(self):
         weight_uom_id = self.env.ref('product.product_uom_kgm', raise_if_not_found=False)
@@ -18,6 +21,25 @@ class DeliveryCarrier(models.Model):
         return weight_uom_id
 
     weight_uom_id = fields.Many2one('product.uom', string='Shipping UoM according to API UoM',help="Set equivalent unit of measurement according to provider unit of measurement. For Example, if the provider unit of measurement is KG then you have to select KG unit of measurement in the Shipping Unit of Measurement field.")
+
+
+    def rate_shipment(self, order):
+        ''' Compute the price of the order shipment
+
+        :param order: record of sale.order
+        :return dict: {'success': boolean,
+                       'price': a float,
+                       'error_message': a string containing an error message,
+                       'warning_message': a string containing a warning message}
+                       # TODO maybe the currency code?
+        '''
+        res=super(DeliveryCarrier,self).rate_shipment(order)
+        if order.declared_value_for_carriage and self.add_value_added_service_costs_to_delivery_cost:
+            if self.percentage_of_value_added_cost_to_paid_by_customer > 0:
+            #     res['price'] = res['price'] + (self.extra_delivery_cost * self.percentage_of_value_added_cost_to_paid_by_customer / 100)
+            # else:
+                res['price'] = res['price'] * self.percentage_of_value_added_cost_to_paid_by_customer / 100
+        return res
 
     @api.model
     def validating_address(self, partner, additional_fields=[]):
@@ -74,14 +96,7 @@ class DeliveryCarrier(models.Model):
            @author: Jigar vagadiya and jigneshbhai.
         """
         return from_uom_unit._compute_quantity(weight, to_uom_unit)
-        # pound_for_kg = 2.20462
-        # ounce_for_kg = 35.274
-        # if weight_unit == "LB":
-        #     return round(weight * pound_for_kg, 3)
-        # elif weight_unit == "OZ":
-        #     return round(weight * ounce_for_kg,3)
-        # else:
-        #     return round(weight, 3)
+
 
     @api.multi
     def check_max_weight(self, order, shipment_weight):

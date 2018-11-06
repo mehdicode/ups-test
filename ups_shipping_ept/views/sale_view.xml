@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <record id="view_ups_signature_cost" model="ir.ui.view">
+            <field name="name">Sales Order Estimated Arrival Date Fields</field>
+            <field name="model">sale.order</field>
+            <field name="inherit_id" ref="sale.view_order_form"/>
+            <field name="arch" type="xml">
+                 <xpath expr="//field[@name='declared_value_for_carriage']" position="after">
+                    <field name="signature_required"/>
+                </xpath>
+            </field>
+        </record>
+    </data>
+</odoo>			

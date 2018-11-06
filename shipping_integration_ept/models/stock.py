@@ -47,7 +47,7 @@ class StockPicking(models.Model):
             # tracking_link = self.open_website_url()
             # tracking_link = tracking_link.get('url', False)
             if self.carrier_id.get_tracking_link(self):
-                tracking_link = self.carrier_id.get_tracking_link(self)[0]
+                tracking_link = self.carrier_id.get_tracking_link(self)
                 ctx.update({'tracking_link': tracking_link})
                 email_template.with_context(ctx).send_mail(self.id, True)
                 self.write({'is_shipment_confirmation_send': True})

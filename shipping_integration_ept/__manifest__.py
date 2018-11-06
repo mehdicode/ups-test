@@ -8,7 +8,6 @@
     'version': '11.0',
     'summary': '',
     'category': 'Sales',
-    'license': 'OPL-1',
 
     # Dependencies
 
@@ -25,7 +24,9 @@
             'views/res_config_setting_view.xml',
             'views/product_view.xml',
             'views/view_stock_picking_ept.xml',
+            'views/sale_view.xml',
             'data/shipment_tracking_mail_template.xml',
+
     ],
     # Odoo Store Specific
 
@@ -34,7 +35,6 @@
     'author': 'Emipro Technologies Pvt. Ltd.',
     'website': 'http://www.emiprotechnologies.com',
     'maintainer': 'Emipro Technologies Pvt. Ltd.',
-    
 
     'demo': [],
     'installable': True,

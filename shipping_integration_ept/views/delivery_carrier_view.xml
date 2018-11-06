@@ -16,6 +16,11 @@
                 <attribute name="invisible">context.get('hide_field',False)</attribute>
             </field>
             <field name="shipping_instance_id" position="after">
+                <field name="add_value_added_service_costs_to_delivery_cost" attrs="{'invisible':[('shipping_instance_id','=',False)]}"/>
+                <!--<field name="extra_delivery_cost" attrs="{'invisible':[('add_value_added_service_costs_to_delivery_cost','=',False)]}"/>-->
+                <field name="percentage_of_value_added_cost_to_paid_by_customer" attrs="{'invisible':[('add_value_added_service_costs_to_delivery_cost','=',False)]}"/>
+
+
                 <field name="weight_uom_id" attrs="{'invisible':[('shipping_instance_id','=',False)],'required': [('shipping_instance_id', '!=',False)]}"
                        domain="[('category_id','=',2)]" edit="0" create="0"/>
                 <p attrs="{'invisible':[('shipping_instance_id','=',False)]}">
