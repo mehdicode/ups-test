@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data noupdate="1">
+
+        <!-- Reference from : https://www.ups.com/worldshiphelp/WS20/ENU/AppHelp/Codes/Package_Type_Codes.htm -->
+        <!-- For small package shipments, the following UPS standard package types may be available: -->
+        <record id="ups_letter" model="product.packaging">
+            <field name="name">UPS Letter</field>
+            <field name="shipper_package_code">01</field>
+            <field name="package_carrier_type">ups_ept</field>
+            <field name="max_weight">0.0</field>
+        </record>
+
+        <record id="ups_customer_supplied_package" model="product.packaging">
+            <field name="name">Customer Supplied Package</field>
+            <field name="shipper_package_code">02</field>
+            <field name="height">10</field>
+            <field name="width">10</field>
+            <field name="length">10</field>
+            <field name="package_carrier_type">ups_ept</field>
+            <field name="max_weight">68</field>
+        </record>
+
+        <record id="ups_tube" model="product.packaging">
+            <field name="name">UPS Tube</field>
+            <field name="shipper_package_code">03</field>
+            <field name="package_carrier_type">ups_ept</field>
+            <field name="max_weight">68</field>
+        </record>
+
+        <record id="ups_pak" model="product.packaging">
+            <field name="name">UPS PAK</field>
+            <field name="shipper_package_code">04</field>
+            <field name="package_carrier_type">ups_ept</field>
+            <field name="max_weight">68</field>
+        </record>
+
+        <record id="ups_express_box" model="product.packaging">
+            <field name="name">UPS Express Box</field>
+            <field name="shipper_package_code">21</field>
+            <field name="package_carrier_type">ups_ept</field>
+            <field name="max_weight">68</field>
+        </record>
+
+        <record id="ups_25kg_box" model="product.packaging">
+            <field name="name">UPS 25KG Box</field>
+            <field name="shipper_package_code">24</field>
+            <field name="package_carrier_type">ups_ept</field>
+            <field name="max_weight">25</field>
+        </record>
+
+        <record id="ups_10kg_box" model="product.packaging">
+            <field name="name">UPS 10KG Box</field>
+            <field name="shipper_package_code">25</field>
+            <field name="package_carrier_type">ups_ept</field>
+            <field name="max_weight">10</field>
+        </record>
+
+        <record id="ups_pallet" model="product.packaging">
+            <field name="name">UPS Pallet</field>
+            <field name="shipper_package_code">30</field>
+            <field name="package_carrier_type">ups_ept</field>
+            <field name="max_weight">0.0</field>
+        </record>
+
+        <record id="ups_small_express_box" model="product.packaging">
+            <field name="name">UPS Small Express Box</field>
+            <field name="shipper_package_code">2a</field>
+            <field name="package_carrier_type">ups_ept</field>
+            <field name="max_weight">68</field>
+        </record>
+
+        <record id="ups_medium_express_box" model="product.packaging">
+            <field name="name">UPS Medium Express Box</field>
+            <field name="shipper_package_code">2b</field>
+            <field name="package_carrier_type">ups_ept</field>
+            <field name="max_weight">68</field>
+        </record>
+
+        <record id="ups_large_express_box" model="product.packaging">
+            <field name="name">Large Express Box</field>
+            <field name="shipper_package_code">2c</field>
+            <field name="package_carrier_type">ups_ept</field>
+            <field name="max_weight">68</field>
+        </record>
+
+    </data>
+</odoo>

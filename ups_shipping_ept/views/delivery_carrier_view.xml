@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+	<record id="view_delivery_carrier_ups_form_view_ept" model="ir.ui.view">
+		<field name="name">delivery.carrier.UPS.form.view.ept</field>
+		<field name="model">delivery.carrier</field>
+		<field name="inherit_id" ref="delivery.view_delivery_carrier_form" />
+		<field name="arch" type="xml">
+			<xpath expr="//page[@name='destination']" position='before'>
+				<page string="Configuration" name="UPS_configuration"
+					attrs="{'invisible': [('delivery_type', '!=', 'ups_ept')]}">
+					<group>
+							<field name="ups_service_type"
+								attrs="{'required': [('delivery_type', '=', 'ups_ept')]}" />
+							<field name="ups_weight_uom"
+								attrs="{'required': [('delivery_type', '=', 'ups_ept')]}" />
+								
+							<field name="ups_default_product_packaging_id"
+								attrs="{'required': [('delivery_type', '=', 'ups_ept')]}" domain="[('package_carrier_type', '=', 'ups_ept')]" context="{'default_package_carrier_type':'ups_ept'}"/>
+							<field name="ups_lable_print_methods" invisible="1"
+								attrs="{'required': [('delivery_type', '=', 'ups_ept')]}" />								
+					</group>
+				</page>
+			</xpath>
+		</field>
+	</record>
+
+	<!-- Display Note Field -->
+	<record id="view_display_note_ept" model="ir.ui.view">
+        <field name="name">view.display.note.ept</field>
+        <field name="model">stock.picking</field>
+        <field name="inherit_id" ref="shipping_integration_ept.view_display_shipping_rate_ept"/>
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='move_lines']" position="after">
+                <div>
+                    <field name="note" placeholder="Add an internal note that will be printed on the Picking Operations sheet" class="oe_inline"/>
+                </div>
+            </xpath>
+        </field>
+    </record>
+</odoo>

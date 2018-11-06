@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+	<record id="view_ups_configuration" model="ir.ui.view">
+		<field name="name">UPS Configuration View</field>
+		<field name="model">shipping.instance.ept</field>
+		<field name="type">form</field>
+		<field name="inherit_id" ref="shipping_integration_ept.view_shipping_integration"></field>
+		<field name="arch" type="xml">
+			<xpath expr="//notebook/page[@name='credential']/group"
+				position="inside">
+				<group attrs="{'invisible': [('provider', '!=', 'ups_ept')]}">
+					<field name="check_recipient_address" />
+					<field name="access_license_number"
+						attrs="{'required':[('provider','=','ups_ept')]}"></field>
+					<field name="ups_userid" attrs="{'required':[('provider','=','ups_ept')]}"></field>
+					<field name="ups_password" password="True"
+						attrs="{'required':[('provider','=','ups_ept')]}"></field>
+					<field name="ups_shipper_number"
+						attrs="{'required':[('provider','=','ups_ept')]}"></field>
+				</group>
+			</xpath>
+		</field>
+	</record>
+</odoo>
